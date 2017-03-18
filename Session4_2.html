@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function Person(address){ 
+			this.address = address;
+		}
+
+		Person.prototype.getAddress = function(){	
+			console.log("My address is : " + this.address);
+		}
+		
+		function Student(address){
+			Person.call(this, address);
+		}
+		
+		Student.prototype = new Person();
+
+		
+		
+		Student.prototype.getAddress = function(){
+			Person.prototype.getAddress.call(this);
+		}
+		
+		var p = new Person("100 Main St.");
+		console.log(p.getAddress());
+		var s = new Student("232 First Ave.");
+		console.log(s.getAddress());
+		
+	</script>
+	
+</head>
+<body>
+</body>
+</html>
